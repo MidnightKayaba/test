@@ -1,0 +1,62 @@
+<div class="container">
+    <table class="table table-striped table-inverse mt-5 text-center">
+        <thead>
+        <tr>
+            <th class="w-20 text-center">Name product</th>
+            <th class="text-center">Description</th>
+            <th class="w-10 text-center">Price</th>
+            <th class="w-20 text-center">Date</th>
+            <th class="w-10 text-center">Edit</th>
+            <th class="w-10 text-center">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{ product.name }}</td>
+            <td>{{ product.des }}</td>
+            <td>{{ product.pr }}</td>
+            <td>{{product.date | date: 'd/M/yy, h:mm a'}}</td>
+            <td>
+                <span  class="editButton" [ngClass]="{'disableEditDel': flagEdit}" (click)="editProduct(product)">
+                    <img src="../assets/img/edit.png" alt="">
+                </span>
+            </td>
+            <td>
+                <span class="errorButton" [ngClass]="{'disableEditDel': flagEdit}" (click)="deleteProduct(product)">
+                    <img src="../assets/img/cancel.png" alt="">
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-6">
+            <div class="row">
+                <div class="col">
+                    <label for="Name">Name</label>
+                    <input type="text" class="form-control" [ngClass]="{'error': flagName}" id="Name" [(ngModel)] = "product.name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="Description">Description</label>
+                    <textarea class="form-control" id="Description" rows="3" [ngClass]="{'error': flagDescription}" [(ngModel)] = "product.des"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="Price">Price</label>
+                    <input type="number" class="form-control" id="Price" [ngClass]="{'error': flagPrice}" [(ngModel)] = "product.pr">
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-4">
+                    <a class="btn btn-secondary btn-lg" (click)="addProduct()">Write down</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
