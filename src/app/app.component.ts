@@ -32,6 +32,7 @@ export class AppComponent {
                     date: new Date()
                 });
             }
+            console.log('aaa');
             this.product = {
                 'date': 0,
                 'name': '',
